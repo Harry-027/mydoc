@@ -28,6 +28,9 @@ const addBodyParser = (app) => {
 
 /** Util to setup various routes. */
 const addRoutes = (app) => {
+    app.use('/', (req, res, next) => {
+        res.json({msg: 'try using valid api- /object/:key'})
+    });
     app.use('/object', router);
 }
 
