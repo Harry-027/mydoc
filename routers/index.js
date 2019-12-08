@@ -21,17 +21,17 @@ const getKey = async (req, res, next) => {
             const valLength = result.value.length;
             response = {
                 key: result.key,
-                value: result.value[valLength - 1]
+                value: result.value[valLength - 1].value
             }
 
             if (filterCriteriaOn) {
                 let filteredValues = result.value.filter((val) => {
                     return new Date(val.time).getTime() <= time;
                 });
-                response.value = filteredValues[filteredValues.length - 1];
+                response.value = filteredValues[filteredValues.length - 1].value;
             }
         }
-        logger.debug('Responding back to the user');
+        logger.debug('Responding back to the user', response);
         response = response && response.value ? response : 'No records found';
         res.json(response);
 
