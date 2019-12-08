@@ -40,6 +40,10 @@ const getKey = async (req, res, next) => {
     }
 }
 
+const helloWorld = async (req, res, next) => {
+    res.json({msg: 'try using valid api- /object/:key'});
+}
+
 /** handler to store the record in db. */
 const postKey = async (req, res, next) => {
     try {
@@ -72,7 +76,8 @@ const postKey = async (req, res, next) => {
     }
 }
 
-router.get('/:key', getKey);
-router.post('/', postKey)
+router.get('/object/:key', getKey);
+router.post('/object/', postKey)
+router.get('*', helloWorld);
 
 module.exports = router;
