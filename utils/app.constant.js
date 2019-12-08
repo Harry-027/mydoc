@@ -16,7 +16,9 @@ const corsOptions = {
 
 const mongoConfig = {
     host: process.env.HOST,
-    db: process.env.DB
+    db: process.env.DB,
+    user: process.env.USER,
+    password: process.env.PASSWORD
 }
 
 console.log('mongoConfig',mongoConfig);
