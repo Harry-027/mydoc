@@ -1,6 +1,6 @@
 const bodyParser = require('body-parser');
 const logger = require('./logger');
-const router = require('../routers/index');
+const { router } = require('../routers/index');
 const Connection = require('../db/connection');
 
 

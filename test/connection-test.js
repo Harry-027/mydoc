@@ -1,25 +1,6 @@
-
-const MongoClient = require('mongodb').MongoClient;
 const expect = require('chai').expect;
-const sinon = require('sinon');
 
 describe('db/connection', function () {
-
-    const mongoClientMock = ({},{}) => {
-        return {
-            connect: () => {
-                return new Promise((res, rej) => {
-                    res({
-                        db: ({ }) => {
-                            return { db: 'Im db object' }
-                        }
-                    });
-                });
-            }
-        }
-    }
-
-    sinon.spy(MongoClient,mongoClientMock);
 
     const MongoConn = require('../db/connection');
 
@@ -49,16 +30,6 @@ describe('db/connection', function () {
             it('gives the mongo uri', function () {
                 const uri = new MongoConn({ host: 'localhost' }).getConnectionUri();
                 expect(uri).to.equal('mongodb://localhost/');
-            });
-        });
-
-        describe('#connectToDb', function () {
-            it('connects to the mongo database', async function () {
-                const connUtil = new MongoConn({
-                    host: 'localhost', db: 'test', user: 'world', password: 'pass'
-                });
-                const db = await connUtil.connect();
-                console.log('The db',db);
             });
         });
     });
